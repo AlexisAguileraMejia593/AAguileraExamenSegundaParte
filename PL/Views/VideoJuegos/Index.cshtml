@@ -1,0 +1,55 @@
+﻿@model ML.VideoJuegos
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src=" https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<div class="text-center">
+    <h2>VideoJuegos</h2>
+    <h5>Lista de VideoJuegos</h5>
+</div>
+<hr />
+
+<a href="@Url.Action("Form","VideoJuegos")" class="btn btn-success">Agregar</a>
+@if (Model.VideoJuegoss.Count > 0)
+{
+    <table class="table table-bordered">
+        <thead>
+            <!-- On rows -->
+            <tr class="bg-warning">
+                <th>Editar</th>
+                <th>IdVideoJuegos</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Año</th>
+                <th>Compañia</th>
+                <th>Ventas</th>
+                <th>Eliminar</th>
+                <!-- On cells (`td` or `th`) -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ML.VideoJuegos videoJuegos in Model.VideoJuegoss)
+            {
+                <tr>
+                    <td><a class="btn btn-warning" href="@Url.Action("Form", "VideoJuegos", new { IdVideoJuegos = videoJuegos.IdVideoJuegos })"><i class="fa-solid fa-pencil fa-bounce" style="color: #332774;"></i></a></td>
+                    <td>@videoJuegos.IdVideoJuegos</td>
+                    <td>@videoJuegos.Nombre</td>
+                    <td>@videoJuegos.Descripcion</td>
+                    <td>@videoJuegos.Año</td>
+                    <td>@videoJuegos.Compañia</td>
+                    <td>@videoJuegos.Ventas</td>
+
+                    <td><a class="btn btn-danger" href="@Url.Action("Delete", "VideoJuegos", new { IdVideoJuegos = videoJuegos.IdVideoJuegos,})" onclick="return confirm('Estas seguro de que quieres eliminar este registro');"> <i class="fa-solid fa-trash fa-beat" style="color: black;"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        No existen registros en la tabla :(
+    </div>
+}

@@ -1,0 +1,62 @@
+﻿@model ML.VideoJuegos
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src=" https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+@Scripts.Render("~/bundles/jquery")
+<div class="container">
+    <h2 class="text-center">Formulario de VideoJuegos</h2>
+    <hr />
+</div>
+@using (Html.BeginForm("Form", "VideoJuegos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model.IdVideoJuegos)
+
+<div class="row">
+    <div class="col-md-3">
+        @Html.LabelFor(model => model.Nombre)
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        @Html.LabelFor(model => model.Descripcion)
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+            @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        @Html.LabelFor(model => model.Año)
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+            @Html.TextBoxFor(model => model.Año, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        @Html.LabelFor(model => model.Compañia)
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+            @Html.TextBoxFor(model => model.Compañia, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.Ventas)
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+                @Html.TextBoxFor(model => model.Ventas, new {@class = "form-control"})
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="text-center">
+            <button id="btnGuardar" class="btn btn-success" type="submit"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+            <a id="btnCancelar" onmouseover="CambiarColor()" class="btn btn-danger" href="@Url.Action("Index", "VideoJuegos")"><i class="fa-solid fa-right-from-bracket"></i> Volver</a>
+        </div>
+}
